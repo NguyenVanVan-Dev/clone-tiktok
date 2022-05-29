@@ -1,21 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-import Button from '~/components/Button';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { publicRoutes } from '~/routes';
+import { DefaultLayout, OnlyHeader } from './components/Layout';
 
 function App() {
     return (
-        <div className="App">
-            <Button></Button>
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <BrowserRouter>
+            <div className="App">
+                <Routes>
+                    {publicRoutes.map((route, index) => {
+                        const Page = route.component;
+                        switch (route.layout) {
+                            case 'null':
+                                return <Route key={route.path} path={route.path} element={<Page />}></Route>;
+                            case 'onlyHeader':
+                                return (
+                                    <Route key={route.path} path={route.path} element={<OnlyHeader />}>
+                                        <Route key={route.path} path={route.path} element={<Page />}></Route>;
+                                    </Route>
+                                );
+                            default:
+                                return (
+                                    <Route key={route.path} path={route.path} element={<DefaultLayout />}>
+                                        <Route key={route.path} path={route.path} element={<Page />}></Route>;
+                                    </Route>
+                                );
+                        }
+                    })}
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
 
