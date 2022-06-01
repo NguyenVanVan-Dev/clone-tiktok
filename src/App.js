@@ -14,14 +14,14 @@ function App() {
                                 return <Route key={route.path} path={route.path} element={<Page />}></Route>;
                             case 'onlyHeader':
                                 return (
-                                    <Route key={route.path} path={route.path} element={<OnlyHeader />}>
-                                        <Route key={route.path} path={route.path} element={<Page />}></Route>;
+                                    <Route key={route.path} path="/" element={<OnlyHeader />}>
+                                        <Route path={route.path} element={<Page />}></Route>;
                                     </Route>
                                 );
                             default:
                                 return (
-                                    <Route key={route.path} path={route.path} element={<DefaultLayout />}>
-                                        <Route key={route.path} path={route.path} element={<Page />}></Route>;
+                                    <Route key={route.path} path="/" element={<DefaultLayout />}>
+                                        <Route path={route.path} element={<Page />}></Route>;
                                     </Route>
                                 );
                         }

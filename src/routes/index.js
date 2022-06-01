@@ -5,9 +5,9 @@ import Search from '~/pages/Search';
 
 const publicRoutes = [
     { path: '/', component: Home },
-    { path: '/following', component: Following },
-    { path: '/upload', component: UploadVideo, layout: 'onlyHeader' },
-    { path: '/search', component: Search, layout: 'null' },
+    { path: 'following', component: Following },
+    { path: 'upload', component: UploadVideo, layout: 'onlyHeader' },
+    { path: 'search', component: Search, layout: 'null' },
 ];
 
 const privateRoutes = [];
